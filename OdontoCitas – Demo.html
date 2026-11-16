@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OdontoCitas – Demo</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#f5f9fd;--surf:#fff;--ink:#0f2a43;--mut:#52687e;--pri:#1769c2;--on:#fff;--tint:#e6f0fb;--line:#cfe0f1;--ok:#17734e;--okbg:#e3f5ec;--bad:#a63a2b;--badbg:#fbe9e6;--busy:#e9eef3;color-scheme:light;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c1a29;--surf:#12253a;--ink:#e8f0f8;--mut:#9db2c7;--pri:#5aa4ec;--on:#06121f;--tint:#17314d;--line:#26415d;--ok:#6fd1a2;--okbg:#14382a;--bad:#f0a094;--badbg:#3d1f1b;--busy:#1a2f45;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0c1a29;--surf:#12253a;--ink:#e8f0f8;--mut:#9db2c7;--pri:#5aa4ec;--on:#06121f;--tint:#17314d;--line:#26415d;--ok:#6fd1a2;--okbg:#14382a;--bad:#f0a094;--badbg:#3d1f1b;--busy:#1a2f45;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif}
+.aviso{background:var(--tint);color:var(--ink);font-size:.85rem;text-align:center;padding:.45rem 1rem;border-bottom:1px solid var(--line)}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem;max-width:720px;margin:0 auto;padding:1rem 1rem .5rem}
+.marca{font-weight:700;font-size:1.25rem;margin-right:auto;display:flex;align-items:center;gap:.5rem}
+.marca i{width:1.6rem;height:1.6rem;border-radius:.45rem;background:var(--pri);display:inline-block}
+nav{display:flex;gap:.25rem;flex-wrap:wrap}
+nav button{background:none;border:0;color:var(--mut);font:600 .95rem Figtree,system-ui,sans-serif;padding:.5rem .75rem;border-radius:.5rem;min-height:44px;cursor:pointer}
+nav button[aria-current="page"]{background:var(--tint);color:var(--pri)}
+main{max-width:720px;margin:0 auto;padding:.5rem 1rem 2.5rem}
+h1{font-size:1.6rem;line-height:1.2;margin:.75rem 0 .25rem}
+h2{font-size:1.1rem;margin:0}
+p.sub{color:var(--mut);margin:0 0 1.25rem}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:.9rem;padding:1rem;margin-bottom:.9rem}
+.tabs{display:flex;gap:.25rem;background:var(--tint);padding:.25rem;border-radius:.75rem;margin-bottom:1rem}
+.tabs button{flex:1;border:0;background:none;color:var(--mut);font:600 .95rem Figtree,system-ui,sans-serif;min-height:44px;border-radius:.55rem;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--surf);color:var(--pri)}
+label{display:block;font-weight:600;font-size:.9rem;margin:.8rem 0 .25rem}
+input[type=text],input[type=email],input[type=password]{width:100%;min-height:46px;padding:.6rem .8rem;border:1px solid var(--line);border-radius:.6rem;background:var(--surf);color:var(--ink);font:inherit}
+.chk{display:flex;gap:.6rem;align-items:flex-start;font-weight:400;margin-top:1rem}
+.chk input{width:1.2rem;height:1.2rem;margin-top:.2rem;flex:none}
+.btn{display:inline-flex;justify-content:center;align-items:center;min-height:46px;padding:.6rem 1.1rem;border-radius:.65rem;border:1px solid var(--pri);background:var(--pri);color:var(--on);font:700 1rem Figtree,system-ui,sans-serif;cursor:pointer}
+.btn.sec{background:none;color:var(--pri)}
+.btn.full{width:100%;margin-top:1.1rem}
+.err{color:var(--bad);font-size:.9rem;margin:.6rem 0 0;min-height:1.2em}
+.dias{display:flex;gap:.5rem;overflow-x:auto;padding-bottom:.4rem;margin-bottom:.9rem}
+.dias button{flex:none;min-height:44px;padding:.4rem .9rem;border-radius:2rem;border:1px solid var(--line);background:var(--surf);color:var(--ink);font:600 .9rem Figtree,system-ui,sans-serif;cursor:pointer;text-transform:capitalize}
+.dias button[aria-pressed="true"]{background:var(--pri);border-color:var(--pri);color:var(--on)}
+.prof{display:flex;gap:.75rem;align-items:center;margin-bottom:.8rem}
+.av{width:2.7rem;height:2.7rem;border-radius:50%;background:var(--tint);color:var(--pri);display:grid;place-items:center;font-weight:700;flex:none}
+.prof small{color:var(--mut);display:block}
+.horas{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem}
+.horas button{min-height:44px;border-radius:.55rem;border:1px solid var(--pri);background:var(--surf);color:var(--pri);font:600 .95rem Figtree,system-ui,sans-serif;cursor:pointer}
+.horas button:disabled{background:var(--busy);border-color:var(--busy);color:var(--mut);text-decoration:line-through;cursor:not-allowed}
+dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:.5rem 1rem}
+dt{color:var(--mut)}dd{margin:0;font-weight:600;text-transform:capitalize}
+.fila{display:flex;justify-content:space-between;gap:.75rem;align-items:flex-start}
+.estado{display:inline-block;padding:.15rem .6rem;border-radius:2rem;font-size:.82rem;font-weight:700}
+.estado.ok{background:var(--okbg);color:var(--ok)}.estado.no{background:var(--badbg);color:var(--bad)}
+.btn.peq{min-height:40px;padding:.35rem .8rem;font-size:.9rem;margin-top:.6rem}
+.vacio{text-align:center;color:var(--mut);padding:1.5rem 0}
+#toast{position:fixed;left:50%;bottom:calc(1rem + env(safe-area-inset-bottom,0px));transform:translate(-50%,150%);background:var(--ink);color:var(--bg);padding:.7rem 1.1rem;border-radius:.7rem;font-weight:600;transition:transform .2s;max-width:90vw;z-index:5}
+#toast.on{transform:translate(-50%,0)}
+:focus-visible{outline:3px solid var(--pri);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){#toast{transition:none}}
+</style>
+</head>
+<body>
+<div class="aviso">Prototipo con datos simulados: no se guarda información real.</div>
+<div id="app"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+/* ===== DATOS DE EJEMPLO: edita aquí nombres, especialidades y horas ===== */
+const DATOS = {
+  profesionales: [
+    {id:'p1', nombre:'Dra. Camila Restrepo', esp:'Odontología general'},
+    {id:'p2', nombre:'Dr. Andrés Palacio', esp:'Ortodoncia'},
+    {id:'p3', nombre:'Dra. Laura Meza', esp:'Endodoncia'}
+  ],
+  horas: ['08:00','09:00','10:00','11:00','14:00','15:00','16:00','17:00'],
+  diasAdelante: 4
+};
+/* ======================================================================== */
+const S = {user:null, citas:[], vista:'auth', modo:'registro', dia:null, sel:null};
+const KEY = 'odontocitas-demo';
+function cargar(){try{const r=localStorage.getItem(KEY);if(r){const d=JSON.parse(r);S.user=d.user||null;S.citas=d.citas||[];}}catch(e){}}
+function guardar(){try{localStorage.setItem(KEY,JSON.stringify({user:S.user,citas:S.citas}));}catch(e){}}
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const DIAS=(()=>{const a=[],d=new Date();while(a.length<DATOS.diasAdelante){d.setDate(d.getDate()+1);if(d.getDay()!==0)a.push({k:iso(d),t:d.toLocaleDateString('es-CO',{weekday:'short',day:'numeric',month:'short'})});}return a;})();
+const largo=k=>new Date(k+'T12:00:00').toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long'});
+const prof=id=>DATOS.profesionales.find(p=>p.id===id);
+const semilla=(p,k,h)=>{let n=0;for(const c of p+k+h)n=(n*31+c.charCodeAt(0))%97;return n%4===0;};
+const ocupado=(p,k,h)=>semilla(p,k,h)||S.citas.some(c=>c.estado==='Confirmada'&&c.p===p&&c.k===k&&c.h===h);
+function aviso(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('on');clearTimeout(aviso.t);aviso.t=setTimeout(()=>el.classList.remove('on'),2600);}
+
+function cabecera(){
+  const n=S.citas.filter(c=>c.estado==='Confirmada').length;
+  const cur=v=>S.vista===v?' aria-current="page"':'';
+  return `<header><div class="marca"><i></i>OdontoCitas</div>`+(S.user?`<nav aria-label="Principal">
+    <button data-a="nav" data-v="horarios"${cur('horarios')}>Horarios</button>
+    <button data-a="nav" data-v="citas"${cur('citas')}>Mis citas${n?' ('+n+')':''}</button>
+    <button data-a="salir">Salir</button></nav>`:'')+`</header>`;
+}
+function vAuth(){
+  const reg=S.modo==='registro';
+  return `<h1>${reg?'Crea tu cuenta':'Inicia sesión'}</h1><p class="sub">Agenda tu cita odontológica sin llamar al consultorio.</p>
+  <div class="card"><div class="tabs" role="tablist">
+    <button role="tab" aria-selected="${reg}" data-a="modo" data-v="registro">Registro</button>
+    <button role="tab" aria-selected="${!reg}" data-a="modo" data-v="login">Ingresar</button></div>
+  <form id="f-auth" novalidate>
+    ${reg?`<label for="nom">Nombre completo</label><input id="nom" type="text" autocomplete="name" required>`:''}
+    <label for="cor">Correo</label><input id="cor" type="email" autocomplete="email" required>
+    <label for="pas">Contraseña</label><input id="pas" type="password" autocomplete="${reg?'new-password':'current-password'}" required>
+    ${reg?`<label class="chk"><input id="aut" type="checkbox"><span>Autorizo el tratamiento de mis datos personales para agendar citas y recibir notificaciones.</span></label>`:''}
+    <p class="err" id="err" role="alert"></p>
+    <button class="btn full" type="submit">${reg?'Crear cuenta':'Ingresar'}</button>
+  </form></div>`;
+}
+function vHorarios(){
+  if(!S.dia)S.dia=DIAS[0].k;
+  return `<h1>Horarios disponibles</h1><p class="sub">Elige un día y una hora. Las horas tachadas ya están ocupadas.</p>
+  <div class="dias" role="group" aria-label="Día">${DIAS.map(d=>`<button data-a="dia" data-v="${d.k}" aria-pressed="${d.k===S.dia}">${d.t}</button>`).join('')}</div>
+  ${DATOS.profesionales.map(p=>`<section class="card"><div class="prof"><div class="av" aria-hidden="true">${esc(p.nombre.split(' ').slice(1).map(w=>w[0]).join('').slice(0,2))}</div><div><h2>${esc(p.nombre)}</h2><small>${esc(p.esp)}</small></div></div>
+  <div class="horas">${DATOS.horas.map(h=>`<button data-a="elegir" data-p="${p.id}" data-h="${h}" ${ocupado(p.id,S.dia,h)?'disabled aria-label="'+h+' ocupada"':''}>${h}</button>`).join('')}</div></section>`).join('')}`;
+}
+function vConfirmar(){
+  const s=S.sel,p=prof(s.p);
+  return `<h1>Confirma tu cita</h1><p class="sub">Revisa los datos antes de agendar.</p>
+  <div class="card"><dl><dt>Profesional</dt><dd>${esc(p.nombre)}</dd><dt>Especialidad</dt><dd>${esc(p.esp)}</dd><dt>Fecha</dt><dd>${largo(s.k)}</dd><dt>Hora</dt><dd>${s.h}</dd></dl>
+  <button class="btn full" data-a="agendar">Agendar cita</button>
+  <button class="btn sec full" data-a="nav" data-v="horarios">Elegir otro horario</button></div>`;
+}
+function vCitas(){
+  const l=[...S.citas].sort((a,b)=>(a.k+a.h).localeCompare(b.k+b.h));
+  return `<h1>Mis citas</h1><p class="sub">Aquí ves el estado de cada cita.</p>`+(l.length?l.map(c=>{const p=prof(c.p),ok=c.estado==='Confirmada';
+    return `<div class="card"><div class="fila"><div><h2>${esc(p.nombre)}</h2><small style="color:var(--mut)">${esc(p.esp)}</small></div><span class="estado ${ok?'ok':'no'}">${c.estado}</span></div>
+    <p style="margin:.6rem 0 0;text-transform:capitalize">${largo(c.k)} · ${c.h}</p>${ok?`<button class="btn sec peq" data-a="cancelar" data-id="${c.id}">Cancelar cita</button>`:''}</div>`;}).join('')
+    :`<div class="vacio">Aún no tienes citas.<br><button class="btn full" data-a="nav" data-v="horarios">Ver horarios</button></div>`);
+}
+function render(){
+  const v=S.vista==='auth'?vAuth():S.vista==='horarios'?vHorarios():S.vista==='confirmar'?vConfirmar():vCitas();
+  document.getElementById('app').innerHTML=cabecera()+'<main>'+v+'</main>';
+  window.scrollTo(0,0);
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-a]');if(!b||b.disabled)return;
+  const a=b.dataset.a;
+  if(a==='modo'){S.modo=b.dataset.v;}
+  else if(a==='nav'){S.vista=b.dataset.v;}
+  else if(a==='dia'){S.dia=b.dataset.v;}
+  else if(a==='elegir'){S.sel={p:b.dataset.p,k:S.dia,h:b.dataset.h};S.vista='confirmar';}
+  else if(a==='agendar'){
+    if(ocupado(S.sel.p,S.sel.k,S.sel.h)){aviso('Ese horario ya no está disponible.');S.vista='horarios';}
+    else{S.citas.push({id:Date.now(),p:S.sel.p,k:S.sel.k,h:S.sel.h,estado:'Confirmada'});guardar();S.sel=null;S.vista='citas';render();aviso('Cita agendada.');return;}
+  }
+  else if(a==='cancelar'){const c=S.citas.find(x=>x.id==b.dataset.id);if(c){c.estado='Cancelada';guardar();render();aviso('Cita cancelada. El horario quedó libre.');return;}}
+  else if(a==='salir'){S.user=null;guardar();S.vista='auth';S.modo='login';}
+  render();
+});
+document.addEventListener('submit',e=>{
+  if(e.target.id!=='f-auth')return;
+  e.preventDefault();
+  const g=id=>{const x=document.getElementById(id);return x?x.value.trim():'';};
+  const err=t=>{document.getElementById('err').textContent=t;};
+  const cor=g('cor'),pas=g('pas'),reg=S.modo==='registro';
+  if(reg&&!g('nom'))return err('Escribe tu nombre.');
+  if(!/^\S+@\S+\.\S+$/.test(cor))return err('Escribe un correo válido, por ejemplo nombre@correo.com.');
+  if(pas.length<6)return err('La contraseña debe tener al menos 6 caracteres.');
+  if(reg&&!document.getElementById('aut').checked)return err('Marca la casilla de autorización para crear la cuenta.');
+  if(reg){S.user={nombre:g('nom'),correo:cor,acepto:new Date().toISOString()};}
+  else if(!S.user||S.user.correo!==cor){S.user={nombre:cor.split('@')[0],correo:cor};}
+  guardar();S.vista='horarios';render();aviso('Bienvenido, '+S.user.nombre.split(' ')[0]+'.');
+});
+cargar();S.vista=S.user?'horarios':'auth';render();
+</script>
+</body>
+</html>
